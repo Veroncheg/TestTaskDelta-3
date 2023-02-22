@@ -10,23 +10,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
+        id: build
         run: | 
           echo Doing some build here
           chmod +x ./randomaction.sh && ./randomaction.sh
       - name: Doing some tests here
-        run: |
-          echo Doing some tests here
-          ./randomaction.sh
-      - name: Doing some tests here
+        id: tests
         run: |
           echo Doing some tests here
           ./randomaction.sh
       - name: Doing some publish here
+        id: publish
         run: |
           echo Doing some publish here
           ./randomaction.sh
       - name: Doing some deploy here
+        id: deploy
         run: |
           echo Doing some deploy here
           ./randomaction.sh
-
+      - name: Notifications
+        if: steps.build.conclusion == 'failure' || steps.tests.conclusion =='failure' || steps.publish.conclusion == 'failure' || steps.deploy.conclusion = 'failure'
+        run: echo Notifying admins on fail
