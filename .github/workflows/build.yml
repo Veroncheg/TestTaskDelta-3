@@ -14,25 +14,16 @@ jobs:
         run: | 
           echo Doing some build here
           chmod +x ./randomaction.sh && ./randomaction.sh
-      - name: Notifications
-        if: failure()
-        run: echo Notifying admins on fail
       - name: Doing some tests here
         id: tests
         run: |
           echo Doing some tests here
           ./randomaction.sh
-      - name: Notifications
-        if: failure()
-        run: echo Notifying admins on fail
       - name: Doing some publish here
         id: publish
         run: |
           echo Doing some publish here
           ./randomaction.sh
-      - name: Notifications
-        if: failure()
-        run: echo Notifying admins on fail
       - name: Doing some deploy here
         id: deploy
         run: |
