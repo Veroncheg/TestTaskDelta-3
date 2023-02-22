@@ -1,0 +1,32 @@
+name: CI
+
+# Run manually only
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: | 
+          echo Doing some build here
+          chmod +x ./randomaction.sh && ./randomaction.sh
+      - name: Doing some tests here
+        run: |
+          echo Doing some tests here
+          ./randomaction.sh
+      - name: Doing some tests here
+        run: |
+          echo Doing some tests here
+          ./randomaction.sh
+      - name: Doing some publish here
+        run: |
+          echo Doing some publish here
+          ./randomaction.sh
+      - name: Doing some deploy here
+        run: |
+          echo Doing some deploy here
+          ./randomaction.sh
+
