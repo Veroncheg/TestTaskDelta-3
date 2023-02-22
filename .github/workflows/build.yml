@@ -31,4 +31,6 @@ jobs:
           ./randomaction.sh
       - name: Notifications
         if: failure()
-        run: echo Notifying admins on fail
+        env:
+          PAGERDUTY_TOKEN: ${{ secrets.PAGERDUTY_TOKEN }}
+        run: curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'From: <veron.blg@gmail.com>' --header "Authorization: Token token=$PAGERDUTY_TOKEN" -d '{"incident": {"type": "incident", "title": "Build failed", "service": {"id": "PC91CFF", "type": "service_reference"} } }' 'https://api.pagerduty.com/incidents'
